@@ -2,10 +2,8 @@
 一个实现api的koademo
 
 #### 明日事项
-1. axios请求带信息,或判断是否登录
 2. devtools使用
 3. ssr使用(frontBussinessManage)/user/login
-4. 打印看store各部分执行先后,在变更后
 
 # 参考
 1. [element-ui文档](https://element.faas.ele.me/#/zh-CN/component/installation 'element-ui文档')

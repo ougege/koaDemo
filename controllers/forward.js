@@ -53,15 +53,25 @@ class ForWardController {
                 // 查询合约详情模型
                 let data = await ForWardModel.getForWardList(id)
                 ctx.response.status = 200
-                ctx.body = {
-                    code: 200,
-                    msg: '查询成功',
-                    data
+                if (data) {
+                    ctx.body = {
+                        code: 200,
+                        msg: '查询成功',
+                        data
+                    }
+                } else {
+                    ctx.response.status = 404
+                    ctx.body = {
+                        code: 404,
+                        msg: '未找到',
+                        data: err
+                    }
                 }
+                
             } catch (err) {
-                ctx.response.status = 412
+                ctx.response.status = 403
                 ctx.body = {
-                    code: 412,
+                    code: 403,
                     msg: '查询失败',
                     data: err
                 }
