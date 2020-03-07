@@ -4,6 +4,10 @@
 #### 明日事项
 2. devtools使用
 3. ssr使用(frontBussinessManage)/user/login
+4. 退出localstorage清空
+4. https://blog.csdn.net/weixin_34232617/article/details/88022428  token验证
+5. https://www.cnblogs.com/pzxnm/p/10500083.html
+1. 了解http协议,浏览器原理
 
 # 参考
 1. [element-ui文档](https://element.faas.ele.me/#/zh-CN/component/installation 'element-ui文档')
