@@ -10,7 +10,7 @@ User.sync({force: false})
 // 合约
 class ForWardModel {
     /**
-     * 创建合约模型
+     * 创建合约模型(单个)
      * @param data
      * @returns {Promise<*>}
      */
@@ -21,6 +21,15 @@ class ForWardModel {
             price: data.price,
             deposit: data.deposit
         })
+    }
+
+    /**
+     * 创建合约模型(列表)
+     * @param data
+     * @returns {Promise<*>}
+     */
+    static async createForWardList(data) {
+        return await ForWard.bulkCreate(data, {updateOnDuplicate:['name', 'id', 'price', 'deposit']})
     }
 
     /**

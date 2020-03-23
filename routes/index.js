@@ -17,8 +17,10 @@ router.get('/json', async (ctx, next) => {
     title: 'koa2 json'
   }
 })
-// 创建合约
+// 创建合约(单个)
 router.post('/forward/create', ForWardController.create)
+// 创建合约(多个)
+router.post('/forward/createList', ForWardController.createList)
 // 获取合约详情
 router.get('/forward/detail', ForWardController.detail)
 // 删除合约

@@ -10,7 +10,7 @@ const expireTime = '10s'
 const secret = require('../public/secret')
 class ForWardController {
     /**
-     * 创建合约
+     * 创建合约(单个)
      * @param ctx
      * @returns {Promise.<void>}
      */
@@ -25,6 +25,54 @@ class ForWardController {
                     let ret = await ForWardModel.createForWard(req)
                     // 使用刚刚创建的id查询合约列表,且返回合约信息
                     let data = await ForWardModel.getForWardList(ret.id)
+    
+                    ctx.response.status = 200
+                    ctx.body = {
+                        code: 200, 
+                        msg: '创建合约成功',
+                        data
+                    }
+                } catch(err) {
+                    ctx.response.status = 412
+                    ctx.body = {
+                        code: 412,
+                        msg: '创建合约失败',
+                        data: err
+                    }
+                }
+            } else {
+                ctx.response.status = 416
+                ctx.body = {
+                    code: 200,
+                    msg: '参数不全'
+                }
+            }
+        } else {
+            ctx.status = 401
+            ctx.body = {
+                code: 401,
+                msg: '登录过期,请重新登录'
+            }
+        }
+    }
+    
+    /**
+     * 创建合约(多个)
+     * @param ctx
+     * @returns {Promise.<void>}
+     */
+    static async createList(ctx) {
+        // 接受客户端
+        const req = ctx.request.body
+        console.log(req)
+        const token = ctx.header.authorization
+        if (token && await tools.verToken(token)) {
+            if(req.arr) {
+                try {
+                    // 创建合约模型
+                    let ret = await ForWardModel.createForWardList(req.arr)
+                    // 使用刚刚创建的id查询合约列表,且返回合约信息
+                    // let data = await ForWardModel.getForWardList(ret.id)
     
                     ctx.response.status = 200
                     ctx.body = {
