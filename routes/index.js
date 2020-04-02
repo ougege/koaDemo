@@ -2,6 +2,8 @@ const router = require('koa-router')()
 const ControllerAll = require('../controllers/forward')
 const ForWardController = ControllerAll.ForWardController
 const UserController = ControllerAll.UserController
+// 封装了upload
+const upload = require('../public/upload')
 router.get('/', async (ctx, next) => {
   await ctx.render('index', {
     title: 'Hello Koa 2!'
@@ -33,4 +35,10 @@ router.get('/user/detail', UserController.detail)
 router.post('/user/login', UserController.login)
 // 删除用户
 // router.post('/user/delete', UserController.delete)
+// 上传图片
+router.post('/upload', upload.single('file'), async(ctx, next) => {
+  ctx.body = {
+    filename: ctx.req.file.filename
+  }
+})
 module.exports = router
